@@ -116,8 +116,9 @@
             <div class="card-header bg-white py-3">
                 <h5 class="fw-bold mb-0">Statistik Mahasiswa per Prodi</h5>
             </div>
-            <div class="card-body d-flex align-items-center justify-content-center">
-                <div style="width: 100%; max-height: 280px;">
+            <div class="card-body">
+                {{-- Chart.js butuh wadah dengan tinggi PASTI (bukan max-height) --}}
+                <div style="position: relative; width: 100%; height: 280px;">
                     <canvas id="prodiChart"></canvas>
                 </div>
             </div>
@@ -130,8 +131,8 @@
             <div class="card-header bg-white py-3">
                 <h5 class="fw-bold mb-0">Statistik Jenis Kelamin</h5>
             </div>
-            <div class="card-body d-flex align-items-center justify-content-center">
-                <div style="width: 100%; max-height: 250px;">
+            <div class="card-body">
+                <div style="position: relative; width: 100%; height: 280px;">
                     <canvas id="genderChart"></canvas>
                 </div>
             </div>
@@ -229,10 +230,21 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{-- Versi dikunci: link tanpa versi bisa tiba-tiba memuat versi baru yang tidak cocok --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        
+
+        if (typeof Chart === 'undefined') {
+            console.error('Chart.js gagal dimuat. Cek koneksi internet / link CDN.');
+            return;
+        }
+
+        // Warna teks & garis grid mengikuti tema (agar terbaca di dark mode)
+        const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+        Chart.defaults.color = isDark ? '#cbd5e1' : '#475569';
+        Chart.defaults.borderColor = isDark ? 'rgba(148, 163, 184, .15)' : 'rgba(0, 0, 0, .08)';
+
         // 1. BAR CHART - MAHASISWA PER PRODI
         const ctxProdi = document.getElementById('prodiChart').getContext('2d');
         const labelsProdi = {!! json_encode($mahasiswaPerProdi->pluck('kode_prodi')) !!};
@@ -245,8 +257,8 @@
                 datasets: [{
                     label: 'Jumlah Mahasiswa',
                     data: dataProdi,
-                    backgroundColor: 'rgba(13, 71, 161, 0.85)',
-                    borderColor: '#0d47a1',
+                    backgroundColor: isDark ? 'rgba(59, 130, 246, 0.85)' : 'rgba(13, 71, 161, 0.85)',
+                    borderColor: isDark ? '#3b82f6' : '#0d47a1',
                     borderWidth: 1,
                     borderRadius: 6
                 }]
@@ -295,6 +307,9 @@
                 cutout: '65%' // Mengatur ketebalan donat
             }
         });
+
+        // Saat tema diganti dari sidebar, muat ulang halaman agar warna grafik ikut berubah
+        document.addEventListener('themechange', () => location.reload());
     });
 </script>
 @endpush
