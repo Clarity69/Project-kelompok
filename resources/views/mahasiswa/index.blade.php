@@ -9,7 +9,7 @@
         <p class="text-muted mb-0">Kelola data mahasiswa terdaftar.</p>
     </div>
     <div class="d-flex gap-2">
-        <a href="{{ route('mahasiswa.pdf', request()->query()) }}" class="btn btn-danger shadow-sm" target="_blank">
+        <a href="{{ route('mahasiswa.pdf') }}" id="btn-print-pdf" class="btn btn-danger shadow-sm" target="_blank">
             <i class="bi bi-file-earmark-pdf me-1"></i> Print PDF
         </a>
         <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary shadow-sm">
@@ -165,4 +165,16 @@
         @endif
     </div>
 </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('btn-print-pdf').addEventListener('click', function () {
+        const search = document.querySelector('input[name="search"]').value;
+        const prodiId = document.querySelector('select[name="prodi_id"]').value;
+
+        const params = new URLSearchParams({ search: search, prodi_id: prodiId });
+        this.href = "{{ route('mahasiswa.pdf') }}?" + params.toString();
+    });
+</script>
 @endsection

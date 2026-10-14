@@ -3,7 +3,7 @@
        IDENTITAS INSTANSI UNTUK KOP — SILAKAN SESUAIKAN
     ========================================================== */
     $kop = [
-        'yayasan'   => 'Yayasan Pendidikan Besai Berintah',
+        'yayasan'   => 'Yayasan Pendidikan Bessai Berinta',
         'instansi'  => 'Sekolah Tinggi Teknologi Bontang',
         'fakultas'  => 'Fakultas Teknik',
         'alamat'    => 'Jalan Letjen S Parman No. 65 Bontang Barat, Kota Bontang, Kalimantan Timur, Kode Pos 75313',
