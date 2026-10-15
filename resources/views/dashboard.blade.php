@@ -34,7 +34,7 @@
                             <span class="badge {{ $persen['total']['kelas'] }} rounded-pill">
                                 <i class="bi {{ $persen['total']['ikon'] }}"></i> {{ $persen['total']['teks'] }}
                             </span>
-                            <span class="text-muted ms-1">vs 30 hari lalu</span>
+                            <span class="text-muted ms-1">dalam 30 hari terakhir</span>
                         </div>
                     </div>
                     <div class="rounded-circle bg-primary bg-opacity-10 p-3 text-primary">
@@ -57,7 +57,7 @@
                             <span class="badge {{ $persen['laki']['kelas'] }} rounded-pill">
                                 <i class="bi {{ $persen['laki']['ikon'] }}"></i> {{ $persen['laki']['teks'] }}
                             </span>
-                            <span class="text-muted ms-1">vs 30 hari lalu</span>
+                            <span class="text-muted ms-1">dalam 30 hari terakhir</span>
                         </div>
                     </div>
                     <div class="rounded-circle bg-info bg-opacity-10 p-3 text-info">
@@ -80,7 +80,7 @@
                             <span class="badge {{ $persen['perempuan']['kelas'] }} rounded-pill">
                                 <i class="bi {{ $persen['perempuan']['ikon'] }}"></i> {{ $persen['perempuan']['teks'] }}
                             </span>
-                            <span class="text-muted ms-1">vs 30 hari lalu</span>
+                            <span class="text-muted ms-1">dalam 30 hari terakhir</span>
                         </div>
                     </div>
                     <div class="rounded-circle bg-danger bg-opacity-10 p-3 text-danger">
@@ -103,7 +103,7 @@
                             <span class="badge {{ $persen['prodi']['kelas'] }} rounded-pill">
                                 <i class="bi {{ $persen['prodi']['ikon'] }}"></i> {{ $persen['prodi']['teks'] }}
                             </span>
-                            <span class="text-muted ms-1">vs 30 hari lalu</span>
+                            <span class="text-muted ms-1">dalam 30 hari terakhir</span>
                         </div>
                     </div>
                     <div class="rounded-circle bg-success bg-opacity-10 p-3 text-success">
