@@ -29,23 +29,12 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <span class="text-muted fw-semibold small">Total Mahasiswa</span>
-                        <div class="d-flex align-items-center gap-2 mt-1">
-                            <h2 class="fw-bold text-dark mb-0">{{ $totalMahasiswa }}</h2>
-                            
-                            {{-- INDIKATOR PANAH NAIK/TURUN --}}
-                            @if($trend === 'up')
-                                <span class="badge bg-success bg-opacity-10 text-success fs-6 rounded-pill px-2 py-1" title="Ada penambahan data">
-                                    <i class="bi bi-arrow-up-short"></i>
-                                </span>
-                            @elseif($trend === 'down')
-                                <span class="badge bg-danger bg-opacity-10 text-danger fs-6 rounded-pill px-2 py-1" title="Ada penghapusan data">
-                                    <i class="bi bi-arrow-down-short"></i>
-                                </span>
-                            @else
-                                <span class="badge bg-secondary bg-opacity-10 text-secondary fs-6 rounded-pill px-2 py-1" title="Tidak ada perubahan">
-                                    <i class="bi bi-dash"></i>
-                                </span>
-                            @endif
+                        <h2 class="fw-bold text-dark mt-1 mb-0">{{ $totalMahasiswa }}</h2>
+                        <div class="small mt-2">
+                            <span class="badge {{ $persen['total']['kelas'] }} rounded-pill">
+                                <i class="bi {{ $persen['total']['ikon'] }}"></i> {{ $persen['total']['teks'] }}
+                            </span>
+                            <span class="text-muted ms-1">vs 30 hari lalu</span>
                         </div>
                     </div>
                     <div class="rounded-circle bg-primary bg-opacity-10 p-3 text-primary">
@@ -64,6 +53,12 @@
                     <div>
                         <span class="text-muted fw-semibold small">Laki-laki</span>
                         <h2 class="fw-bold text-info mt-1 mb-0">{{ $totalLakiLaki }}</h2>
+                        <div class="small mt-2">
+                            <span class="badge {{ $persen['laki']['kelas'] }} rounded-pill">
+                                <i class="bi {{ $persen['laki']['ikon'] }}"></i> {{ $persen['laki']['teks'] }}
+                            </span>
+                            <span class="text-muted ms-1">vs 30 hari lalu</span>
+                        </div>
                     </div>
                     <div class="rounded-circle bg-info bg-opacity-10 p-3 text-info">
                         <i class="bi bi-person-fill fs-3"></i>
@@ -81,6 +76,12 @@
                     <div>
                         <span class="text-muted fw-semibold small">Perempuan</span>
                         <h2 class="fw-bold text-danger mt-1 mb-0">{{ $totalPerempuan }}</h2>
+                        <div class="small mt-2">
+                            <span class="badge {{ $persen['perempuan']['kelas'] }} rounded-pill">
+                                <i class="bi {{ $persen['perempuan']['ikon'] }}"></i> {{ $persen['perempuan']['teks'] }}
+                            </span>
+                            <span class="text-muted ms-1">vs 30 hari lalu</span>
+                        </div>
                     </div>
                     <div class="rounded-circle bg-danger bg-opacity-10 p-3 text-danger">
                         <i class="bi bi-person-heart fs-3"></i>
@@ -98,6 +99,12 @@
                     <div>
                         <span class="text-muted fw-semibold small">Program Studi</span>
                         <h2 class="fw-bold text-success mt-1 mb-0">{{ $totalProdi }}</h2>
+                        <div class="small mt-2">
+                            <span class="badge {{ $persen['prodi']['kelas'] }} rounded-pill">
+                                <i class="bi {{ $persen['prodi']['ikon'] }}"></i> {{ $persen['prodi']['teks'] }}
+                            </span>
+                            <span class="text-muted ms-1">vs 30 hari lalu</span>
+                        </div>
                     </div>
                     <div class="rounded-circle bg-success bg-opacity-10 p-3 text-success">
                         <i class="bi bi-building fs-3"></i>
@@ -206,16 +213,31 @@
                 <h5 class="fw-bold mb-0">Rekapitulasi Program Studi</h5>
             </div>
             <div class="card-body p-0">
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush rekap-prodi">
+                    @php $warnaProgress = ['bg-primary', 'bg-info', 'bg-success', 'bg-warning', 'bg-danger']; @endphp
                     @forelse($mahasiswaPerProdi as $prodi)
-                        <li class="list-group-item d-flex justify-content-between align-items-center px-4 py-3">
-                            <div>
-                                <h6 class="fw-bold mb-0">{{ $prodi->nama_prodi }}</h6>
-                                <small class="text-muted">{{ $prodi->kode_prodi }}</small>
+                        @php
+                            $persenProdi = $totalMahasiswa > 0
+                                ? round($prodi->mahasiswas_count / $totalMahasiswa * 100, 1)
+                                : 0;
+                        @endphp
+                        <li class="list-group-item px-4 py-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <h6 class="fw-bold mb-0">{{ $prodi->nama_prodi }}</h6>
+                                    <small class="text-muted">{{ $prodi->kode_prodi }}</small>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold">{{ $prodi->mahasiswas_count }} <small class="text-muted fw-normal">mhs</small></div>
+                                    <small class="text-muted">{{ $persenProdi }}%</small>
+                                </div>
                             </div>
-                            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-bold">
-                                {{ $prodi->mahasiswas_count }} Mahasiswa
-                            </span>
+                            <div class="progress" style="height: 6px;" role="progressbar"
+                                 aria-label="Persentase mahasiswa {{ $prodi->nama_prodi }}"
+                                 aria-valuenow="{{ $persenProdi }}" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar {{ $warnaProgress[$loop->index % count($warnaProgress)] }}"
+                                     style="width: {{ $persenProdi }}%"></div>
+                            </div>
                         </li>
                     @empty
                         <li class="list-group-item text-center text-muted py-4">
@@ -229,9 +251,26 @@
 </div>
 @endsection
 
+@push('styles')
+<style>
+    /* Rekapitulasi: ikut warna card, tidak abu-abu sendiri di dark mode */
+    .rekap-prodi .list-group-item {
+        background-color: transparent;
+        color: inherit;
+        border-color: rgba(0, 0, 0, .06);
+    }
+    [data-bs-theme="dark"] .rekap-prodi .list-group-item { border-color: #334155; }
+    [data-bs-theme="dark"] .rekap-prodi .progress { background-color: #334155; }
+</style>
+@endpush
+
 @push('scripts')
-{{-- Versi dikunci: link tanpa versi bisa tiba-tiba memuat versi baru yang tidak cocok --}}
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{{-- Chart.js dimuat dari folder public (tidak bergantung internet/CDN).
+     Kalau file lokal belum ada, otomatis memakai CDN sebagai cadangan. --}}
+<script src="{{ asset('js/chart.umd.js') }}"></script>
+<script>
+    window.Chart || document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"><\/script>');
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 

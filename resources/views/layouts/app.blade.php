@@ -167,6 +167,14 @@
         [data-bs-theme="dark"] .dropdown-item:hover { background-color: rgba(59, 130, 246, .12); color: #93c5fd; }
         [data-bs-theme="dark"] .dropdown-item.text-danger:hover { background-color: rgba(220, 53, 69, .15) !important; }
 
+        /* MODAL GANTI PASSWORD */
+        .modal-password-icon {
+            width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+            background: rgba(13, 71, 161, .12); color: #0d47a1;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+        }
+        [data-bs-theme="dark"] .modal-password-icon { background: rgba(59, 130, 246, .18); color: #93c5fd; }
+
         /* MODAL KONFIRMASI HAPUS */
         .modal-hapus-icon {
             width: 64px; height: 64px; border-radius: 50%;
@@ -263,6 +271,12 @@
                             <i class="bi bi-person-circle fs-5 text-primary"></i> <span>Profile Saya</span>
                         </a>
                     </li>
+                    <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center gap-3 py-2 px-4"
+                                data-bs-toggle="modal" data-bs-target="#modalPassword">
+                            <i class="bi bi-key fs-5 text-warning"></i> <span>Ganti Password</span>
+                        </button>
+                    </li>
                     <li><hr class="dropdown-divider mx-3 my-2"></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
@@ -280,6 +294,86 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- MODAL GANTI PASSWORD (dibuka dari dropdown profil di topbar) --}}
+    @php
+        // Buka ulang modal otomatis kalau validasi dari form modal ini gagal
+        $errorPasswordModal = old('_form') === 'password_modal'
+            && $errors->hasAny(['current_password', 'password']);
+    @endphp
+    <div class="modal fade" id="modalPassword" tabindex="-1" aria-labelledby="modalPasswordLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow" style="border-radius: 16px;">
+                <form action="{{ route('profile.password.update') }}" method="POST" id="formPassword">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="_form" value="password_modal">
+
+                    <div class="modal-header border-0 pb-0 px-4 pt-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="modal-password-icon"><i class="bi bi-shield-lock-fill"></i></div>
+                            <div>
+                                <h5 class="modal-title fw-bold mb-0" id="modalPasswordLabel">Ganti Password</h5>
+                                <small class="text-muted">Gunakan minimal 8 karakter.</small>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    </div>
+
+                    <div class="modal-body px-4">
+                        @php
+                            $fieldPassword = [
+                                'current_password'      => ['Password Saat Ini', 'current-password'],
+                                'password'              => ['Password Baru', 'new-password'],
+                                'password_confirmation' => ['Konfirmasi Password Baru', 'new-password'],
+                            ];
+                        @endphp
+                        @foreach ($fieldPassword as $field => $info)
+                            @php [$label, $autocomplete] = $info; @endphp
+                            <div class="mb-3">
+                                <label for="modal_{{ $field }}" class="form-label fw-semibold small">{{ $label }}</label>
+                                <div class="input-group has-validation">
+                                    <input type="password" id="modal_{{ $field }}" name="{{ $field }}"
+                                           class="form-control @if($errorPasswordModal && $errors->has($field)) is-invalid @endif"
+                                           autocomplete="{{ $autocomplete }}" {{ $field !== 'current_password' ? 'minlength=8' : '' }} required>
+                                    <button type="button" class="btn btn-outline-secondary toggle-password-modal"
+                                            data-target="modal_{{ $field }}" aria-label="Tampilkan password">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    @if ($errorPasswordModal && $errors->has($field))
+                                        <div class="invalid-feedback">{{ $errors->first($field) }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="modal-footer border-0 px-4 pb-4 pt-0">
+                        <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary px-4" id="btnSimpanPassword">
+                            <i class="bi bi-check2-circle me-1"></i> Simpan Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- NOTIFIKASI (TOAST) UNTUK PESAN SUKSES / ERROR DARI CONTROLLER --}}
+    @if (session('success') || session('error'))
+        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100; margin-top: 70px;">
+            <div id="toastNotif" class="toast align-items-center border-0 text-bg-{{ session('success') ? 'success' : 'danger' }}"
+                 role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="bi {{ session('success') ? 'bi-check-circle-fill' : 'bi-exclamation-circle-fill' }} me-1"></i>
+                        {{ session('success') ?? session('error') }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Tutup"></button>
+                </div>
+            </div>
+        </div>
+    @endif
 
     {{-- MODAL KONFIRMASI HAPUS (dipakai semua form dengan class "form-hapus") --}}
     <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="modalHapusLabel" aria-hidden="true">
@@ -393,6 +487,52 @@
             formAkanDihapus.dataset.terkonfirmasi = 'true';
             formAkanDihapus.submit();
         });
+
+        // LOGIKA MODAL GANTI PASSWORD
+        const modalPasswordEl = document.getElementById('modalPassword');
+        const modalPassword = new bootstrap.Modal(modalPasswordEl);
+
+        // Tampilkan / sembunyikan isi password
+        modalPasswordEl.querySelectorAll('.toggle-password-modal').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const input = document.getElementById(btn.dataset.target);
+                const tampil = input.type === 'password';
+                input.type = tampil ? 'text' : 'password';
+                btn.querySelector('i').className = tampil ? 'bi bi-eye-slash' : 'bi bi-eye';
+            });
+        });
+
+        // Cek konfirmasi password di browser sebelum dikirim
+        document.getElementById('formPassword').addEventListener('submit', (e) => {
+            const baru = document.getElementById('modal_password');
+            const konfirmasi = document.getElementById('modal_password_confirmation');
+            konfirmasi.setCustomValidity(baru.value === konfirmasi.value ? '' : 'Konfirmasi password tidak sama.');
+            if (!e.target.checkValidity()) {
+                e.preventDefault();
+                e.target.reportValidity();
+                return;
+            }
+            const btn = document.getElementById('btnSimpanPassword');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Menyimpan...';
+        });
+        document.getElementById('modal_password_confirmation')
+            .addEventListener('input', (e) => e.target.setCustomValidity(''));
+
+        // Kosongkan form setiap modal ditutup
+        modalPasswordEl.addEventListener('hidden.bs.modal', () => {
+            document.getElementById('formPassword').reset();
+            modalPasswordEl.querySelectorAll('.is-invalid').forEach((el) => el.classList.remove('is-invalid'));
+        });
+
+        // Validasi server gagal (misal password lama salah) -> buka lagi modalnya
+        @if ($errorPasswordModal)
+            modalPassword.show();
+        @endif
+
+        // Tampilkan toast notifikasi kalau ada
+        const toastEl = document.getElementById('toastNotif');
+        if (toastEl) new bootstrap.Toast(toastEl, { delay: 4000 }).show();
 
         // Reset saat modal ditutup tanpa menghapus
         modalHapusEl.addEventListener('hidden.bs.modal', () => {
