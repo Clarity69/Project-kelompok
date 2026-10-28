@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portofolio Ninda Fadillah Heryanuryanti — Mahasiswa Informatika STITEK Bontang" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>Ninda Fadillah Heryanuryanti · Portofolio</title>
+    <script>
+        // Terapkan tema sebelum halaman tampil supaya tidak berkedip
+        (function () {
+            try {
+                var saved = localStorage.getItem('theme');
+                var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.classList.toggle('dark', dark);
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body class="antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
