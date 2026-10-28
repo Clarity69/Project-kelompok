@@ -17,7 +17,7 @@ Setiap project ada di foldernya sendiri dan bisa dijalankan terpisah. Riwayat co
 | 2 | Firman | 202412012 | [`uts/portofolio-firman`](uts/portofolio-firman) |
 | 3 | Zaldy | 202412040 | [`uts/portofolio-zaldy`](uts/portofolio-zaldy) |
 | 4 | Ninda | 202412029 | [`uts/portofolio-ninda`](uts/portofolio-ninda) |
-| 5 | Yovitha | 202412044 | [`uts/portofolio-yovitha`](uts/portofolio-yovitha) — menyusul |
+| 5 | Yovitha | 202412044 | [`uts/portofolio-yovitha`](uts/portofolio-yovitha) |
 
 Project UAS dikerjakan bersama oleh seluruh anggota: [`uas/sim-mahasiswa`](uas/sim-mahasiswa).
 
@@ -33,7 +33,7 @@ Project UAS dikerjakan bersama oleh seluruh anggota: [`uas/sim-mahasiswa`](uas/s
 │   ├── portofolio-zaldy/      ← React + Vite, desain neo-brutalist
 │   ├── portofolio-ninda/      ← React + Vite + Tailwind CSS
 │   ├── portofolio-firman/     ← React + Vite, tema hijau-cokelat
-│   └── portofolio-yovitha/    ← menyusul
+│   └── portofolio-yovitha/    ← React + Vite + Tailwind CSS, tema navy
 └── uas/                       ← Ujian Akhir Semester
     └── sim-mahasiswa/         ← Laravel + Supabase (PostgreSQL)
 ```
@@ -50,6 +50,7 @@ Setiap folder project punya `README.md` sendiri dengan penjelasan lebih lengkap.
 | `uts/portofolio-zaldy` | MyPorto | Portofolio neo-brutalist satu halaman dengan dark mode, filter skill/project, dan form kontak | React 19, Vite 7, CSS Modules, react-icons, Formspree | [zaldyfdh/MyPorto](https://github.com/zaldyfdh/MyPorto) |
 | `uts/portofolio-firman` | Portofolio Firman | Portofolio satu halaman bertema hijau-cokelat dengan mode gelap/terang, menampilkan project, skill, dan kontak | React 19, Vite 8, react-icons, Oxlint | [Firman-16/Portofolio-Firman](https://github.com/Firman-16/Portofolio-Firman) |
 | `uts/portofolio-ninda` | Portofolio Ninda | Portofolio pribadi tanpa backend, tema pastel blue dengan mode gelap | React 19, Vite, Tailwind CSS 4 | [xolveyndaa-blip/Portofolio-Ninda-FH](https://github.com/xolveyndaa-blip/Portofolio-Ninda-FH) |
+| `uts/portofolio-yovitha` | Portofolio Yovitha (GRACIA) | Portofolio satu halaman bertema navy dengan aksen biru: hero, about, projects, services, dan kontak; isi diatur dari satu file data | React 19, Vite 8, Tailwind CSS 4, lucide-react | [yovgrace/uts-portofolio](https://github.com/yovgrace/uts-portofolio) |
 | `uas/sim-mahasiswa` | SIM Mahasiswa | Login, dashboard dengan grafik, CRUD data mahasiswa (pencarian & filter), data prodi, profil | Laravel 13, PHP 8.3+, Supabase PostgreSQL, Laravel Breeze, Bootstrap 5.3, Chart.js | [Clarity69/SIM-MAHASISWA](https://github.com/Clarity69/SIM-MAHASISWA) |
 
 ---
