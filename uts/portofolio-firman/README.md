@@ -1,16 +1,58 @@
-# React + Vite
+# Portofolio — Firman
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+- Nama: Firman
+- NIM : 202412012
+- Prodi: Informatika — STITEK Bontang
 
-Currently, two official plugins are available:
+Website portofolio pribadi satu halaman yang dibangun dengan **React + Vite**. Bertema hijau-cokelat dengan latar gradasi dan tombol untuk beralih antara mode gelap dan terang.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Isi Halaman
 
-## React Compiler
+- **Navbar** — logo, menu navigasi, dan tombol ganti tema
+- **Hero** — perkenalan singkat dan foto profil
+- **About Me** — profil dan layanan (*My Services*)
+- **Latest Projects** — Portofolio, Sistem Informasi Mahasiswa, dan Aplikasi D-RENT
+- **My Skills** — daftar kemampuan
+- **Contact Me** — informasi kontak
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Teknologi
 
-## Expanding the Oxlint configuration
+| Komponen | Teknologi |
+|----------|-----------|
+| Library UI | React 19 |
+| Build tool | Vite 8 |
+| Ikon | react-icons |
+| Styling | CSS + inline style berbasis tema |
+| Linter | Oxlint |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Struktur Folder
+
+```
+portofolio-firman/
+├── index.html
+├── public/              ← foto profil dan screenshot project
+└── src/
+    ├── main.jsx         ← titik awal React
+    ├── App.jsx          ← menyusun semua bagian + state mode gelap/terang
+    ├── App.css, index.css
+    └── components/      ← Navbar, Hero, About, Projects, Skills, Contact, Footer
+```
+
+## Cara Menjalankan
+
+Butuh **Node.js 20.19 atau lebih baru**.
+
+```bash
+cd uts/portofolio-firman
+npm install
+npm run dev        # buka http://localhost:5173
+```
+
+| Perintah | Fungsi |
+|----------|--------|
+| `npm run dev` | Menjalankan server pengembangan |
+| `npm run build` | Membuat versi produksi di folder `dist/` |
+| `npm run preview` | Melihat hasil build |
+| `npm run lint` | Memeriksa kode dengan Oxlint |
+
+Repo asal: [Firman-16/Portofolio-Firman](https://github.com/Firman-16/Portofolio-Firman)
