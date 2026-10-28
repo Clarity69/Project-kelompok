@@ -1,0 +1,88 @@
+/* Design tokens — diambil langsung dari desain Figma */
+:root {
+  --black: #000;
+  --ink: #111;
+  --yellow: #ffe600;
+  --amber: #fbbc09;
+  --red: #ff4d4d;
+  --cyan: #00e5ff;
+  --blue: #2563eb;
+  --paper: #faf8f5;
+  --white: #fff;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --nav-h: 72px;
+  --pad: 48px;
+  --max: 1280px;
+
+  /* Warna yang berubah saat dark mode */
+  --line: #000;               /* border & bayangan */
+  --focus: #fffbe0;
+  --nav-bg: rgba(250, 248, 245, 0.9);
+}
+
+:root[data-theme='dark'] {
+  --paper: #121212;
+  --white: #1e1e1e;           /* permukaan kartu */
+  --ink: #f5f5f5;
+  --line: #f2f2f2;
+  --blue: #60a5fa;
+  --gray-100: #2b2b2b;
+  --gray-200: #3a3a3a;
+  --gray-600: #cbd5e1;
+  --gray-700: #d1d5db;
+  --gray-800: #e5e7eb;
+  --focus: #2a2a1a;
+  --nav-bg: rgba(18, 18, 18, 0.9);
+  color-scheme: dark;
+}
+
+@media (max-width: 720px) {
+  :root { --pad: 16px; }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+
+body {
+  font-family: var(--font-display);
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; }
+
+/* Lebar konten mengikuti frame desain (1280px, padding 48px) */
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+/* Muncul saat di-scroll (diaktifkan oleh hooks/useScrollReveal.js) */
+.reveal-on [data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal-on [data-reveal].is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

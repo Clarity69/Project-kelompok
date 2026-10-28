@@ -1,0 +1,62 @@
+.footer {
+  position: relative;
+  margin-top: 64px;
+  padding: 36px 0 32px;
+  background: var(--yellow);
+  border-top: 4px solid var(--line);
+}
+
+.inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+
+.left { display: flex; flex-direction: column; gap: 4px; }
+.title { font-weight: 700; font-size: 20px; line-height: 28px; letter-spacing: -0.5px; text-transform: uppercase; color: var(--black); }
+.sub { font-family: var(--font-mono); font-weight: 700; font-size: 12px; line-height: 16px; color: #1f2937; }
+
+.right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.icons { display: flex; align-items: center; gap: 12px; color: var(--black); }
+.copy { font-family: var(--font-mono); font-weight: 700; font-size: 12px; line-height: 16px; color: var(--black); }
+.place { font-family: var(--font-mono); font-weight: 700; font-size: 10px; line-height: 16px; color: #374151; }
+
+.top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 40;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: var(--amber);
+  border: 2px solid var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 8px;
+  color: var(--black);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.top:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+
+@media (max-width: 720px) {
+  .footer { margin-top: 40px; }
+  .inner { flex-direction: column; align-items: flex-start; }
+  .right { align-items: flex-start; }
+  .top { right: 12px; bottom: 12px; width: 40px; height: 40px; box-shadow: 3px 3px 0 var(--line); }
+}
+
+/* ---------- Tombol interaktif: warna berubah, miring, terangkat ---------- */
+.top { transition: transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.2s ease, color 0.2s ease, box-shadow 0.22s ease; }
+@media (hover: hover) {
+  .top:hover { transform: translateY(-3px) rotate(-3deg); box-shadow: 6px 6px 0 var(--line); }
+}
+.top:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+
+.icons a { display: inline-flex; transition: transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1); }
+@media (hover: hover) {
+  .icons a:hover { transform: translateY(-3px) rotate(-8deg) scale(1.15); }
+}
