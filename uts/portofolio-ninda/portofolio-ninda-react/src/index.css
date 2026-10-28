@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap');
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+}
+
+/* Palet sand & taupe */
+:root {
+    --bg: #f4ede3;          /* sand */
+    --surface: #fbf7f1;     /* krem terang */
+    --text: #3a2e28;        /* coklat tua */
+    --muted: #7b6b60;       /* taupe */
+    --border: #e2d5c4;
+    --accent: #8b6f5c;      /* taupe coklat */
+    --accent-2: #c8b09a;    /* sand gelap */
+    --accent-soft: #ebdfd0;
+    --on-accent: #fbf7f1;
+    --deep: #4a3b33;        /* coklat kopi untuk bagian kontak */
+    --on-deep: #f4ede3;
+}
+
+.dark {
+    --bg: #1b1613;
+    --surface: #241e1a;
+    --text: #f1e8dd;
+    --muted: #b3a394;
+    --border: #3a302a;
+    --accent: #c9a98c;
+    --accent-2: #8f735f;
+    --accent-soft: #30271f;
+    --on-accent: #1b1613;
+    --deep: #2e2520;
+    --on-deep: #f1e8dd;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    transition: background-color .3s, color .3s;
+}
+
+::selection { background: var(--accent-2); color: var(--text); }
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 999px;
+    padding: .8rem 1.5rem;
+    font-weight: 600;
+    font-size: .95rem;
+    transition: transform .2s, background-color .2s, box-shadow .2s, color .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: 0 12px 28px -14px var(--accent); }
+.btn-ghost { border: 1px solid var(--border); background: var(--surface); }
+.btn-light { background: var(--on-deep); color: var(--deep); }
+.btn-outline-light { border: 1px solid color-mix(in srgb, var(--on-deep) 35%, transparent); color: var(--on-deep); }
+
+.section-label {
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+/* Bingkai foto melengkung */
+.arch { border-radius: 999px 999px 1.75rem 1.75rem; }
+
+/* Animasi muncul saat di-scroll */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.show { opacity: 1; transform: none; }
+
+@keyframes blink { 50% { opacity: 0; } }
+.caret { animation: blink 1s step-end infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .caret { animation: none; }
+    html { scroll-behavior: auto; }
+}
