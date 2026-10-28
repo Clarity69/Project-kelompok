@@ -1,0 +1,162 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  backdrop-filter: blur(6px);
+  border-bottom: 4px solid var(--line);
+}
+
+.inner {
+  position: relative;
+  height: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo { display: flex; align-items: center; gap: 12px; }
+
+.logoMark {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: var(--yellow);
+  border: 2px solid var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+  font-weight: 700;
+  font-size: 20px;
+  color: #111;
+}
+
+.logoText { display: flex; flex-direction: column; }
+.brand { font-weight: 700; font-size: 18px; line-height: 28px; letter-spacing: 0.9px; color: var(--ink); }
+.role { font-family: var(--font-mono); font-weight: 700; font-size: 12px; line-height: 16px; color: var(--gray-700); }
+
+.links { display: flex; align-items: center; gap: 8px; }
+
+.link {
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink);
+}
+
+.link:hover { border-color: var(--line); }
+
+.linkActive {
+  background: var(--red);
+  border-color: var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+  color: #fff;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background: var(--cyan);
+  border: 2px solid var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--black);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.cta:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+.ctaInMenu { display: none; }
+
+.actions { display: flex; align-items: center; gap: 16px; }
+
+/* Tombol petir = ganti tema terang/gelap (tinggi sama dengan LET'S TALK) */
+.theme {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--red);
+  border: 2px solid var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+  color: #fff;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.theme:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+.themeOn { background: var(--yellow); color: #111; }
+
+.burger { display: none; }
+
+/* ---------- Responsif ---------- */
+@media (max-width: 900px) {
+  .actions { gap: 12px; margin-left: auto; margin-right: 12px; }
+  .actions .cta { display: none; }
+  .ctaInMenu { display: inline-flex; justify-content: center; margin-top: 8px; }
+
+  .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    background: var(--yellow);
+    border: 2px solid var(--line);
+    box-shadow: 4px 4px 0 var(--line);
+  }
+  .burger span { display: block; height: 3px; background: #000; }
+
+  .links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 16px var(--pad) 20px;
+    background: var(--paper);
+    border-bottom: 4px solid var(--line);
+  }
+  .linksOpen { display: flex; }
+  .link { text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .role { display: none; }
+  .brand { font-size: 16px; letter-spacing: 0.4px; }
+  .logo { gap: 10px; min-width: 0; }
+  .theme { width: 44px; height: 44px; }
+}
+
+/* ---------- Tombol interaktif: warna berubah, miring, terangkat ---------- */
+.cta { transition: transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.2s ease, color 0.2s ease, box-shadow 0.22s ease; }
+.theme { transition: transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.2s ease, color 0.2s ease, box-shadow 0.22s ease; }
+.themeOn { transition: transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.2s ease, color 0.2s ease, box-shadow 0.22s ease; }
+.burger { transition: transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.2s ease, color 0.2s ease, box-shadow 0.22s ease; }
+.link:not(.linkActive) { transition: transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.2s ease, color 0.2s ease, box-shadow 0.22s ease; }
+@media (hover: hover) {
+  .cta:hover { transform: translateY(-3px) rotate(-2deg); box-shadow: 6px 6px 0 var(--line); }
+  .theme:hover { transform: translateY(-3px) rotate(2deg); box-shadow: 6px 6px 0 var(--line); }
+  .themeOn:hover { transform: translateY(-3px) rotate(2deg); box-shadow: 6px 6px 0 var(--line); }
+  .burger:hover { transform: translateY(-3px) rotate(-2deg); box-shadow: 6px 6px 0 var(--line); }
+  .link:not(.linkActive):hover { transform: translateY(-3px) rotate(-1.5deg); box-shadow: 6px 6px 0 var(--line); }
+}
+.cta:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+.theme:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+.themeOn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+.burger:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }
+.link:not(.linkActive):active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--line); }

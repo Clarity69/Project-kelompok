@@ -1,0 +1,190 @@
+/* Jendela galeri project — selalu gelap, sama seperti contoh */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.72);
+  animation: fade 0.18s ease;
+}
+
+.panel {
+  width: min(640px, 100%);
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  background: #121212;
+  border: 2px solid #3a3a3a;
+  border-radius: 16px;
+  box-shadow: 8px 8px 0 #000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  animation: pop 0.2s ease;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 2px solid #232323;
+}
+
+.headLeft { display: flex; align-items: center; gap: 12px; min-width: 0; }
+
+.counter {
+  padding: 6px 14px;
+  background: #0b0b0b;
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 #000;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 16px;
+  color: #f5f5f5;
+  white-space: nowrap;
+}
+
+.counter b { color: #facc15; font-weight: 700; }
+
+.live { flex: none; width: 10px; height: 10px; border-radius: 50%; background: #10b981; }
+
+.title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+
+.close {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 2px solid #3a3a3a;
+  border-radius: 6px;
+  color: #ff5a36;
+  transition: background 0.15s;
+}
+
+.close:hover { background: #1f1f1f; }
+
+.body { padding: 20px; min-height: 0; }
+
+.frame {
+  position: relative;
+  height: clamp(260px, 60vh, 520px); /* tinggi tetap → tombol tidak bergeser saat ganti gambar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1b1d;
+  border: 2px solid #2d2f33;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Gambar selalu muat utuh di dalam frame (tidak terpotong), baik landscape maupun poster tegak */
+.image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  animation: fade 0.2s ease;
+}
+
+.note { font-family: var(--font-mono); font-size: 12px; color: #6b7280; text-transform: uppercase; }
+
+/* ---------- Navigasi ---------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 4px 20px 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 #000;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #000;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
+.prev { background: #facc15; }
+.next { background: #fff; }
+
+.dots { display: flex; align-items: center; gap: 12px; }
+
+.dot {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.dot::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #3a3a40;
+  transition: width 0.2s, background 0.2s;
+}
+
+.dotOn { width: 38px; }
+.dotOn::before { width: 32px; background: #facc15; }
+
+.close:focus-visible,
+.btn:focus-visible,
+.dot:focus-visible { outline: 3px solid #00e5ff; outline-offset: 2px; }
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop, .panel, .image { animation: none; }
+}
+
+@media (max-width: 560px) {
+  .backdrop { padding: 12px; }
+  .header { padding: 12px 14px; }
+  .title { display: none; }
+  .body { padding: 14px; }
+  .nav { gap: 10px; padding: 0 14px 18px; }
+  .btn { padding: 8px 12px; font-size: 16px; }
+  .dots { gap: 4px; }
+}
+
+.btn { transition: transform 0.22s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.2s ease, box-shadow 0.22s ease; }
+@media (hover: hover) {
+  .prev:hover { transform: translateY(-3px) rotate(-2deg); box-shadow: 6px 6px 0 #000; }
+  .next:hover { transform: translateY(-3px) rotate(2deg); box-shadow: 6px 6px 0 #000; }
+  .close:hover { transform: rotate(90deg); }
+}
+.btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000; }
+.close { transition: background 0.15s, transform 0.25s ease; }

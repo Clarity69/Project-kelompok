@@ -1,0 +1,167 @@
+.about { margin-top: 128px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 32px;
+  align-items: start;
+}
+
+.left { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.right { grid-column: 8 / span 5; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; min-width: 0; }
+
+/* ---------- Kartu cerita ---------- */
+.story {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 36px;
+  background: var(--white);
+  border: 4px solid var(--line);
+  box-shadow: 6px 6px 0 var(--line);
+}
+
+.tag {
+  padding: 6px 14px;
+  background: var(--yellow);
+  border: 2px solid var(--line);
+  box-shadow: 2px 2px 0 var(--line);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.heading { font-weight: 700; font-size: 24px; line-height: 32px; text-transform: uppercase; color: var(--ink); }
+
+.paras { display: flex; flex-direction: column; gap: 16px; padding-bottom: 8px; }
+.paras p { font-weight: 500; font-size: 16px; line-height: 24px; color: var(--gray-800); }
+
+.locationRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 2px solid var(--line);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink);
+}
+
+.place { display: inline-flex; align-items: center; gap: 8px; }
+.est { padding: 3px 9px; background: var(--gray-100); border: 1px solid var(--line); }
+
+/* ---------- Statistik ---------- */
+.stats { display: flex; gap: 16px; }
+
+.stat {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.5px;
+  padding: 18px 18px 20.5px;
+  background: var(--white);
+  border: 2px solid var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+  text-align: center;
+}
+
+.statValue { font-family: var(--font-mono); font-weight: 800; font-size: 30px; line-height: 36px; color: var(--ink); }
+.statLabel { font-family: var(--font-mono); font-weight: 700; font-size: 11px; line-height: 16.5px; text-transform: uppercase; color: var(--gray-700); }
+
+/* ---------- Pendidikan ---------- */
+.eduTag {
+  padding: 6px 14px;
+  background: var(--white);
+  border: 2px solid var(--line);
+  box-shadow: 2px 2px 0 var(--line);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.edu {
+  width: 100%;
+  padding: 22px;
+  background: var(--white);
+  border: 2px solid var(--line);
+  box-shadow: 4px 4px 0 var(--line);
+}
+
+.eduTall { min-height: 195px; display: flex; flex-direction: column; justify-content: space-between; }
+
+.eduTop { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.eduId { display: flex; align-items: center; gap: 12px; min-width: 0; }
+
+.eduIcon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  font-size: 18px;
+}
+
+.eduNames { display: flex; flex-direction: column; gap: 5px; padding-bottom: 3px; min-width: 0; }
+.school { font-weight: 700; font-size: 14px; line-height: 20px; text-transform: uppercase; color: var(--ink); }
+.major { font-family: var(--font-mono); font-weight: 700; font-size: 12px; line-height: 16px; }
+
+.years {
+  flex: none;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 15px;
+  white-space: nowrap;
+  color: #111;
+}
+
+.yearsGray { background: var(--gray-100); color: var(--ink); padding-right: 36px; }
+
+.eduText { font-family: var(--font-mono); font-size: 12px; line-height: 16px; color: var(--gray-600); }
+
+.gpa {
+  margin-top: 16px;
+  padding: 15px 0 3px;
+  border-top: 1px solid var(--gray-200);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 1000px) {
+  .about { margin-top: 80px; }
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .left, .right { grid-column: 1 / -1; }
+}
+
+@media (max-width: 720px) {
+  .about { margin-top: 56px; }
+  .story { padding: 20px; }
+  .heading { font-size: 20px; line-height: 28px; }
+  .locationRow { flex-wrap: wrap; }
+  .edu { padding: 18px; }
+  .stats { flex-direction: column; }
+  .eduTop { flex-direction: column; }
+  .yearsGray { padding-right: 9px; }
+}
