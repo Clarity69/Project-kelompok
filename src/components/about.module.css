@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 32px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .left { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
@@ -20,6 +20,7 @@
   background: var(--white);
   border: 4px solid var(--line);
   box-shadow: 6px 6px 0 var(--line);
+  flex: 1;
 }
 
 .tag {
@@ -46,6 +47,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  margin-top: auto;
   padding-top: 18px;
   border-top: 2px solid var(--line);
   font-family: var(--font-mono);
@@ -59,7 +61,7 @@
 .est { padding: 3px 9px; background: var(--gray-100); border: 1px solid var(--line); }
 
 /* ---------- Statistik ---------- */
-.stats { display: flex; gap: 16px; }
+.stats { width: 100%; display: flex; gap: 16px; }
 
 .stat {
   flex: 1 1 0;
@@ -68,7 +70,7 @@
   flex-direction: column;
   align-items: center;
   gap: 4.5px;
-  padding: 18px 18px 20.5px;
+  padding: 18px 12px 20.5px;
   background: var(--white);
   border: 2px solid var(--line);
   box-shadow: 4px 4px 0 var(--line);

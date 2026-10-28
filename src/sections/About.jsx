@@ -11,11 +11,11 @@ export default function About() {
   return (
     <section className={styles.about} id="about">
       <div className={`container ${styles.grid}`}>
-        {/* Kiri: cerita + statistik */}
+        {/* Kiri: cerita */}
         <div className={styles.left}>
           <div className={styles.story}>
             <span className={styles.tag}>ABOUT ME</span>
-            <h2 className={styles.heading}>I AM A UI/UX DESIGNER</h2>
+            <h2 className={styles.heading}>I AM A Digital Product Designer</h2>
             <div className={styles.paras}>
               <p>
                 "I'm Zaldy, a Computer Engineering student with a strong passion for UI/UX design and front-end development. Still actively learning and experimenting with machine learning to build more helpful and visually engaging digital applications."
@@ -33,17 +33,9 @@ export default function About() {
             </div>
           </div>
 
-          <div className={styles.stats}>
-            {stats.map((s) => (
-              <div key={s.label} className={styles.stat}>
-                <span className={styles.statValue}>{s.value}</span>
-                <span className={styles.statLabel}>{s.label}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
-        {/* Kanan: pendidikan */}
+        {/* Kanan: pendidikan + statistik */}
         <div className={styles.right}>
           <span className={styles.eduTag}>EDUCATION</span>
 
@@ -83,6 +75,15 @@ export default function About() {
               digital design.
             </p>
           </article>
+
+          <div className={styles.stats}>
+            {stats.map((s) => (
+              <div key={s.label} className={styles.stat}>
+                <span className={styles.statValue}>{s.value}</span>
+                <span className={styles.statLabel}>{s.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
