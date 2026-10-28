@@ -1,0 +1,490 @@
+.work {
+  padding: var(--space-24) 0 var(--space-32);
+  border-bottom: 1px solid var(--line);
+}
+
+.intro {
+  margin-bottom: var(--space-12);
+}
+
+.title {
+  font-size: var(--display-lg);
+}
+
+.sub {
+  margin-top: var(--space-4);
+  max-width: 56ch;
+  font-size: var(--body);
+  line-height: 1.7;
+  color: var(--ink-body);
+}
+
+/* ---------- showroom ---------- */
+.showroom:focus-visible {
+  outline-offset: 8px;
+}
+
+.stage {
+  aspect-ratio: 16 / 9;
+}
+
+.stageOpen {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-in;
+}
+
+.stageHint {
+  position: absolute;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 36px;
+  padding: 0 var(--space-3);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  font-size: var(--eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.stageOpen:hover .stageHint,
+.stageOpen:focus-visible .stageHint {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .stageHint {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stageImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--bg-raised);
+  animation: show 0.5s var(--ease);
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+}
+
+.stageBar {
+  position: absolute;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+}
+
+.counter {
+  font-family: var(--font-mono);
+  font-size: var(--eyebrow);
+  color: var(--ink);
+}
+
+.arrows {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.arrows button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  transition: border-color 0.2s ease;
+}
+
+.arrows button:hover {
+  border-color: var(--ink);
+}
+
+.thumbs {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+}
+
+.thumbImg {
+  display: block;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  opacity: 0.55;
+  filter: grayscale(1);
+  transition: opacity 0.25s ease, filter 0.25s ease, border-color 0.25s ease;
+}
+
+.thumbImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.thumb:hover .thumbImg {
+  opacity: 0.9;
+}
+
+.thumbActive .thumbImg {
+  opacity: 1;
+  filter: none;
+  border-color: var(--ink);
+}
+
+.thumbLabel {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--eyebrow);
+  color: var(--ink-muted);
+  transition: color 0.2s ease;
+}
+
+.thumbActive .thumbLabel {
+  color: var(--ink);
+}
+
+.thumbNum {
+  font-family: var(--font-mono);
+  color: var(--ink-faint);
+}
+
+/* ---------- stage + index ---------- */
+.stageRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 248px;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.stageCol {
+  min-width: 0;
+}
+
+.index ol {
+  list-style: none;
+}
+
+.indexHead {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.indexRow {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 12px;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  color: var(--ink-muted);
+  transition: color 0.2s ease, padding 0.25s var(--ease);
+}
+
+.indexRow:hover {
+  color: var(--ink);
+  padding-left: var(--space-1);
+}
+
+.indexNum {
+  font-family: var(--font-mono);
+  font-size: var(--eyebrow);
+  color: var(--ink-faint);
+}
+
+.indexBody {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.indexTitle {
+  font-size: var(--body-sm);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.indexTech {
+  font-size: 0.6875rem;
+  color: var(--ink-faint);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.indexArrow {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.indexActive {
+  color: var(--ink);
+}
+
+.indexActive .indexNum {
+  color: var(--accent);
+}
+
+.indexActive .indexArrow,
+.indexRow:hover .indexArrow {
+  opacity: 1;
+}
+
+/* ---------- detail ---------- */
+.detail {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-12);
+  margin-top: var(--space-12);
+}
+
+.projectTitle {
+  font-size: var(--display-md);
+  margin-top: var(--space-3);
+  word-break: break-word;
+}
+
+.desc {
+  margin-top: var(--space-6);
+  max-width: 60ch;
+  font-size: var(--lead);
+  line-height: 1.65;
+  color: var(--ink-body);
+}
+
+.points {
+  margin-top: var(--space-6);
+  display: grid;
+  gap: var(--space-4);
+  max-width: 62ch;
+}
+
+.points li {
+  position: relative;
+  padding-left: var(--space-6);
+  font-size: var(--body);
+  line-height: 1.7;
+  color: var(--ink-body);
+}
+
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 12px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.detailBtn {
+  margin-top: var(--space-8);
+}
+
+.specs {
+  align-self: start;
+  border-top: 1px solid var(--line);
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.links {
+  display: inline-flex;
+  gap: var(--space-4);
+}
+
+/* ---------- more ---------- */
+.more {
+  margin-top: var(--space-24);
+}
+
+.moreHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.moreTitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.75rem;
+  color: var(--ink);
+}
+
+.repo {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 200px 1fr 140px 48px 16px;
+  align-items: baseline;
+  gap: var(--space-6);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.25s var(--ease);
+}
+
+.repo:hover {
+  padding-left: var(--space-2);
+}
+
+.repoName {
+  font-family: var(--font-mono);
+  font-size: var(--body-sm);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.repoDesc {
+  font-size: var(--body-sm);
+  line-height: 1.6;
+  color: var(--ink-body);
+}
+
+.repoTech {
+  font-size: var(--eyebrow);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.repoStars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--eyebrow);
+  color: var(--ink-muted);
+}
+
+.repoArrow {
+  color: var(--ink-faint);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.repo:hover .repoArrow {
+  color: var(--ink);
+  transform: scale(1.1);
+}
+
+.allRepos {
+  margin-top: var(--space-8);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 880px) {
+  .detail {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .stageRow {
+    grid-template-columns: 1fr;
+  }
+
+  /* di layar kecil indeks sudah mewakili strip, jadi thumbnail disembunyikan */
+  .thumbs {
+    display: none;
+    overflow-x: auto;
+    padding-bottom: var(--space-2);
+  }
+
+  .repo {
+    grid-template-columns: 1fr 16px;
+    gap: var(--space-1) var(--space-4);
+  }
+
+  .repoName {
+    grid-column: 1;
+  }
+
+  .repoArrow {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .repoDesc,
+  .repoTech,
+  .repoStars {
+    grid-column: 1;
+  }
+
+  .repoStars:empty {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .work {
+    padding: var(--space-16) 0 var(--space-24);
+  }
+
+  .stage {
+    touch-action: pan-y;
+  }
+
+  .arrows button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .indexRow {
+    padding: var(--space-4) 0;
+  }
+
+  .detail {
+    margin-top: var(--space-8);
+  }
+
+  .more {
+    margin-top: var(--space-16);
+  }
+
+  .stage {
+    aspect-ratio: 4 / 3;
+  }
+}

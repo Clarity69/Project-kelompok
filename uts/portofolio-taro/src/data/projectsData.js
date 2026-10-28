@@ -1,0 +1,146 @@
+export const featuredProjects = [
+  {
+    id: 1,
+    fileName: "shell.qml",
+    fileType: "qml",
+    title: "MY-SHELL",
+    image: "/projects/dashboard.webp",
+    description: "A minimal Hyprland desktop shell built with Quickshell: featuring an app-style Control Center and a dynamic status bar replacing Waybar, with live pywal color integration.",
+    points: [
+      "Built a feature-rich Control Center with 10 dedicated pages (network, audio, Bluetooth, display, wallpapers, clipboard, and keybinds) interfacing with system CLI tools (nmcli, wpctl, bluetoothctl).",
+      "Designed a responsive status bar supporting 7 switchable layouts, swaync notification integration, calendar popup, and real-time IPC control via Hyprland keybinds."
+    ],
+    tech: ["Quickshell", "QML", "Hyprland", "Shell Script", "pywal"],
+    github: "https://github.com/Clarity69/My-Shell"
+  },
+  {
+    id: 2,
+    fileName: "App.jsx",
+    fileType: "jsx",
+    title: "Personal Notes App V2",
+    image: "/projects/home.webp",
+    description: "Full-featured personal notes web application integrated with a RESTful API, supporting user authentication, responsive theme switching, and multi-language capabilities.",
+    points: [
+      "Architected using React Hooks, Context API, and custom hooks for scalable global state management.",
+      "Implemented robust user authentication, protected routes, dynamic dark/light mode, and seamless ID/EN localization."
+    ],
+    tech: ["React", "JavaScript", "REST API", "CSS"],
+    github: "https://github.com/Clarity69/personal-notes-app",
+    demo: "https://personal-notes-app-mu.vercel.app/"
+  },
+  {
+    id: 3,
+    fileName: "SimMahasiswa.blade.php",
+    fileType: "php",
+    title: "SIM-MAHASISWA",
+    image: "/projects/dashboard-1.webp",
+    description: "A web-based Student Information System built with Laravel to streamline academic profile management, grade recording, and administrative workflows.",
+    points: [
+      "Developed following Laravel MVC pattern, utilizing Eloquent ORM for database relations and Blade Templating for modular UI components.",
+      "Features fine-grained administrative access control, student data operations, and structured record management."
+    ],
+    tech: ["Laravel", "PHP", "MySQL", "Blade", "Bootstrap"],
+    github: "https://github.com/Clarity69/SIM-MAHASISWA"
+  },
+  {
+    id: 4,
+    fileName: "compose.yml",
+    fileType: "yml",
+    title: "homelabbing",
+    image: "/projects/homelab-architecture.svg",
+    description: "Personal homelab infrastructure configuration focusing on self-hosted cloud services, containerized deployment, and system resource monitoring.",
+    points: [
+      "Configured and managed containerized services using Docker Compose for cloud storage and server telemetry.",
+      "Documented deployment procedures, network isolation, and maintenance workflows for reproducible local infrastructure."
+    ],
+    tech: ["Docker", "Linux", "YAML"],
+    github: "https://github.com/Clarity69/Homelab"
+  },
+  {
+    id: 5,
+    fileName: "main.py",
+    fileType: "py",
+    title: "Vibe-code",
+    image: "/projects/vibes.webp",
+    description: "An experimental Python repository evaluating AI-assisted development workflows and rapid prototyping patterns.",
+    points: [
+      "Explores prompt-guided code generation and developer-AI collaborative loops to accelerate software prototyping.",
+      "Serves as a sandbox for testing code generation limits, automated refactoring, and AI tooling capabilities in Python."
+    ],
+    tech: ["Python"],
+    github: "https://github.com/Clarity69/Vibe-code"
+  },
+  {
+    id: 6,
+    fileName: "form.js",
+    fileType: "js",
+    title: "website-form-mhs",
+    image: "/projects/preview.webp",
+    description: "A lightweight dynamic form processing engine built strictly using native browser Web APIs.",
+    points: [
+      "Implemented client-side dynamic input handling and DOM updates entirely in vanilla JavaScript without framework overhead.",
+      "Zero-dependency structure focused on reliable client-side validation and event handling."
+    ],
+    tech: ["JavaScript", "HTML5", "CSS3"],
+    github: "https://github.com/Clarity69/website-form-mhs"
+  },
+  {
+   id: 7,
+    fileName: "main.jsx",
+    fileType: "react",
+    title: "ThePorto",
+    image: "/projects/porto.webp",
+    description: "This portfolio — a React + Vite single-page site with a terminal-inspired design, light/dark themes, and project data pulled live from the GitHub API.",
+    points: [
+      "Manages global theme state with React Context and a custom useTheme hook, persisted in localStorage, synced with the OS color scheme, and animated with the View Transitions API.",
+      "Fetches repositories from the GitHub REST API through a custom hook with caching, loading skeletons, and a static fallback; project details open in a lazy-loaded modal.",
+      "Fully responsive down to small phones, with a mobile navigation menu, accessible labels, and optimized WebP images (Lighthouse Performance 100)."
+    ],
+    tech: ["React", "Vite", "JavaScript", "CSS Modules", "GitHub API"],
+    github: "https://github.com/Clarity69/ThePorto"
+  }
+];
+
+export const otherProjects = [
+  {
+    id: 1,
+    title: "Pemweb",
+    description: "Practicum coursework repository (Praktikum Pemrograman Web) covering foundational web programming exercises.",
+    tech: ["HTML", "CSS"],
+    github: "https://github.com/Clarity69/Pemweb"
+  },
+  {
+    id: 2,
+    title: "dotfiles",
+     image: "/projects/dots.webp",
+    description: "Personal Linux dotfiles and rice configuration — window manager, terminal and desktop styling setup.",
+    tech: ["CSS", "Shell"],
+    github: "https://github.com/Clarity69/dotfiles"
+  },
+  {
+    id: 3,
+    title: "wofi-config",
+     image: "/projects/wofi.webp",
+    description: "A personal Wofi application-launcher configuration, built for a customized GNOME desktop.",
+    tech: ["CSS"],
+    github: "https://github.com/Clarity69/wofi-config"
+  }
+];
+
+
+   // Repo yang tidak ditampilkan di "More"
+export const hiddenRepos = ['porto', 'python', 'kc','web','draw-io'];
+export const previewImages = {
+  'dotfiles': '/projects/dots.webp',
+  'wofi-config': '/projects/wofi.webp',
+  'pemweb': '/projects/pemweb.webp',
+  // 'porto': '/projects/porto.webp',
+  'kasir': '/projects/kasir.webp',
+  'pemesanan-makanan': '/projects/pemesanan-makanan.webp',
+  // 'web': '/projects/web.webp',
+  'praktikum': '/projects/praktikum.webp',
+  'bug_hunt': '/projects/bug-hunt-preview.webp',
+  // 'kc': '/projects/kc.webp',
+  // 'python': '/projects/python.webp',
+  // 'draw-io': '/projects/draw.webp',
+};

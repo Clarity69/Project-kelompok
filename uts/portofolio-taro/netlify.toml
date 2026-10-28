@@ -1,0 +1,26 @@
+# Konfigurasi deploy Netlify
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Vite 7 butuh Node 20.19+ — pakai Node 22 LTS
+  NODE_VERSION = "22"
+
+# Situs satu halaman: semua alamat dikembalikan ke index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# File hasil build (nama berisi hash) aman di-cache lama
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

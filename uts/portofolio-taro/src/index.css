@@ -1,0 +1,296 @@
+/* ==========================================================
+   Bone & Ink — design tokens
+   Dark ("Ink") adalah tema utama, terang ("Bone") opsional.
+   ========================================================== */
+:root,
+:root[data-theme='dark'] {
+  --bg: #070707;
+  --bg-raised: #0e0d0c;
+  --ink: #cbc2b9;
+  --ink-body: #c4bbb2;
+  --ink-muted: #938d86;
+  --ink-faint: #67625d;
+  --line: #232120;
+  --line-strong: #3a3633;
+  --accent: #ca6036;
+  --inverse: #c9c0b7;
+  --inverse-ink: #0b0a09;
+  --inverse-muted: #4a4540;
+  --inverse-line: #a39a91;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #d4ccc3;
+  --bg-raised: #cac1b7;
+  --ink: #141210;
+  --ink-body: #1f1c1a;
+  --ink-muted: #4f4944;
+  --ink-faint: #7a726b;
+  --line: #bab1a7;
+  --line-strong: #9a9188;
+  --accent: #853412;
+  --inverse: #141210;
+  --inverse-ink: #d4ccc3;
+  --inverse-muted: #a39a91;
+  --inverse-line: #3a3633;
+  color-scheme: light;
+}
+
+:root {
+  /* type */
+  --font-display: 'Fraunces', 'Times New Roman', serif;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-jp: 'Noto Serif JP', serif;
+
+  --display-xl: clamp(4rem, 9vw, 7rem);
+  --display-lg: clamp(2.75rem, 6vw, 4.5rem);
+  --display-md: clamp(2rem, 4vw, 3rem);
+  --display-italic: clamp(1.6rem, 3vw, 2.5rem);
+  --lead: 1.1875rem;
+  --body: 1.0625rem;
+  --body-sm: 0.9375rem;
+  --eyebrow: 0.6875rem;
+
+  /* spacing (4px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  --container-wide: 1344px;
+  --container-narrow: 1144px;
+  --radius-xs: 2px;
+  --nav-h: 64px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink-body);
+  font-family: var(--font-sans);
+  font-size: var(--body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- shared utilities ---------- */
+.container-wide,
+.container-narrow {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--space-8);
+}
+
+.container-wide {
+  max-width: var(--container-wide);
+}
+
+.container-narrow {
+  max-width: var(--container-narrow);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.voice {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--display-italic);
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.lead {
+  font-size: var(--lead);
+  line-height: 1.65;
+  color: var(--ink-body);
+  max-width: 58ch;
+}
+
+/* Judul tidak menyisakan satu kata sendirian; paragraf tanpa baris yatim */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-xs);
+  font-size: var(--eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--inverse);
+  color: var(--inverse-ink);
+  border: 1px solid var(--inverse);
+}
+
+.btn-primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.btn-outline {
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+}
+
+.btn-outline:hover {
+  border-color: var(--ink);
+}
+
+.link-underline {
+  color: var(--ink);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.link-underline:hover {
+  color: var(--accent);
+}
+
+/* Reveal saat scroll (dipasang dari App.jsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Animasi ganti tema (fallback browser lama) */
+.theme-switching,
+.theme-switching * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (max-width: 720px) {
+
+  .container-wide,
+  .container-narrow {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  /* Tombol utama lebih tinggi supaya enak ditekan jari */
+  .btn {
+    height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

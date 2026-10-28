@@ -1,0 +1,190 @@
+.connect {
+  padding: var(--space-24) 0 var(--space-32);
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  background: var(--inverse);
+  color: var(--inverse-ink);
+}
+
+.copy,
+.side {
+  min-width: 0;
+}
+
+.panel .title {
+  font-size: var(--display-lg);
+  color: var(--inverse-ink);
+}
+
+.lead {
+  margin-top: var(--space-6);
+  max-width: 520px;
+  font-size: var(--lead);
+  color: var(--inverse-ink);
+}
+
+/* ---------- email ---------- */
+.email {
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--inverse-line);
+}
+
+.emailLabel,
+.sideLabel {
+  font-size: var(--eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--inverse-muted);
+}
+
+.emailAddress {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.2;
+  color: var(--inverse-ink);
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--inverse-line);
+  transition: border-color 0.2s ease;
+}
+
+.emailAddress:hover {
+  border-bottom-color: var(--inverse-ink);
+}
+
+.emailActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.btnSolid,
+.btnLine {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 38px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-xs);
+  font-size: var(--eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.btnSolid {
+  background: var(--inverse-ink);
+  color: var(--inverse);
+}
+
+.btnSolid:hover {
+  opacity: 0.85;
+}
+
+.btnLine {
+  border: 1px solid var(--inverse-line);
+  color: var(--inverse-ink);
+}
+
+.btnLine:hover {
+  border-color: var(--inverse-ink);
+}
+
+.note {
+  margin-top: var(--space-6);
+  font-size: var(--body-sm);
+  color: var(--inverse-muted);
+}
+
+/* ---------- socials ---------- */
+.sideLabel {
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--inverse-ink);
+}
+
+.social {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 14px;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 20px 0;
+  border-bottom: 1px solid var(--inverse-line);
+  color: var(--inverse-ink);
+  transition: padding 0.25s var(--ease);
+}
+
+.social:hover {
+  padding-left: var(--space-2);
+}
+
+.socialBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.socialTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-weight: 600;
+}
+
+.socialHandle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--inverse-muted);
+  overflow-wrap: anywhere;
+}
+
+.socialText {
+  font-size: var(--body-sm);
+  color: var(--inverse-muted);
+}
+
+.socialArrow {
+  transition: transform 0.2s ease;
+}
+
+.social:hover .socialArrow {
+  transform: translate(2px, -2px);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 880px) {
+  .panel {
+    grid-template-columns: 1fr;
+    padding: var(--space-8);
+  }
+}
+
+@media (max-width: 720px) {
+  .connect {
+    padding: var(--space-16) 0 var(--space-16);
+  }
+
+  .panel {
+    padding: var(--space-6);
+  }
+}

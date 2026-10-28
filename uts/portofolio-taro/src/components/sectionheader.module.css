@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-16);
+  font-size: var(--eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.num {
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .header {
+    margin-bottom: var(--space-8);
+  }
+}
+
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.kanji {
+  font-family: var(--font-jp);
+  font-size: 1rem;
+  letter-spacing: 0;
+  color: var(--ink);
+}
